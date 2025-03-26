@@ -252,10 +252,10 @@ void rf_jammerFull() { //@IncursioHack - https://github.com/IncursioHack -  than
     tft.setTextSize(FP);
     sendRF = true;
     digitalWrite(nTransmitterPin, HIGH); // Turn on Jammer
-    int tmr0=millis();             // control total jammer time;
+               // control total jammer time;
     padprintln("Sending... Press ESC to stop.");
     while (sendRF) {
-        if (check(EscPress) || (millis() - tmr0 >20000)) {
+        if (check(EscPress)) {
             sendRF = false;
             returnToMenu=true;
             break;
@@ -280,12 +280,12 @@ void rf_jammerIntermittent() { //@IncursioHack - https://github.com/IncursioHack
     tft.println("");
     sendRF = true;
     padprintln("Sending... Press ESC to stop.");
-    int tmr0 = millis();
+    
     while (sendRF) {
         for (int sequence = 1; sequence < 50; sequence++) {
             for (int duration = 1; duration <= 3; duration++) {
                 // Moved Escape check into this loop to check every cycle
-                if (check(EscPress) || (millis()-tmr0)>20000) {
+                if (check(EscPress)){
                     sendRF = false;
                     returnToMenu=true;
                     break;
